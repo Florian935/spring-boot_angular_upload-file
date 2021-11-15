@@ -1,0 +1,18 @@
+<mat-toolbar color="primary">
+    <button
+        mat-raised-button
+        [routerLink]="['/upload-image']"
+        routerLinkActive="active"
+    >
+        Upload image
+    </button>
+
+    <button
+        mat-raised-button
+        [routerLink]="['/download-image']"
+        routerLinkActive="active"
+    >
+        Download image
+    </button>
+</mat-toolbar>
+<router-outlet></router-outlet>

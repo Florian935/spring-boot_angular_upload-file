@@ -19,9 +19,9 @@ import static lombok.AccessLevel.PRIVATE;
 @Data
 @Builder
 @Entity
-@Table(name = "picture")
+@Table(name = "file")
 @FieldDefaults(level = PRIVATE)
-public class Picture {
+public class File {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
