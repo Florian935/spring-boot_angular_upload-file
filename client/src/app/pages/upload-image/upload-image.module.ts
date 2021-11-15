@@ -6,11 +6,15 @@ import { UploadImageComponent } from './components/upload-image.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UploadService } from './services/upload.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
+const MATERIALS = [MatProgressBarModule];
 
 @NgModule({
     declarations: [UploadImageComponent],
     imports: [
         CommonModule,
+        ...MATERIALS,
         FlexLayoutModule,
         HttpClientModule,
         UploadImageRoutingModule,

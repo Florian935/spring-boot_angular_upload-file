@@ -1,3 +1,4 @@
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { UploadService } from '../services/upload.service';
 
@@ -10,6 +11,7 @@ export class UploadImageComponent {
     selectedFiles?: FileList;
     currentFile?: File;
     message?: string;
+    percentDone?: number;
 
     constructor(private _uploadService: UploadService) {}
 
@@ -26,8 +28,28 @@ export class UploadImageComponent {
 
                 this._uploadService
                     .upload(this.currentFile)
-                    .subscribe((responseMessage: string) => {
-                        this.message = responseMessage;
+                    .subscribe((httpEvent: HttpEvent<string>) => {
+                        switch (httpEvent.type) {
+                            case HttpEventType.Sent:
+                                this.message = `Uploading file "${file.name}" of size ${file.size}.`;
+                                break;
+
+                            case HttpEventType.UploadProgress:
+                                // Compute and show the % done:
+                                this.percentDone = Math.round(
+                                    (100 * httpEvent.loaded) /
+                                        (httpEvent.total ?? 0)
+                                );
+                                this.message = `File "${file.name}" is ${this.percentDone}% uploaded.`;
+                                break;
+
+                            case HttpEventType.Response:
+                                this.message = `File "${file.name}" was completely uploaded!`;
+                                break;
+
+                            default:
+                                this.message = `File "${file.name}" surprising upload event: ${httpEvent.type}.`;
+                        }
                     });
             }
         }
