@@ -8,6 +8,7 @@
             <input type="file" (change)="selectFile($event)" />
         </label>
     </div>
+    <ng-container *ngIf="message">{{ message }}</ng-container>
     <div>
         <button
             class="btn btn-success btn-sm"

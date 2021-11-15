@@ -9,6 +9,7 @@ import { UploadService } from '../services/upload.service';
 export class UploadImageComponent {
     selectedFiles?: FileList;
     currentFile?: File;
+    message?: string;
 
     constructor(private _uploadService: UploadService) {}
 
@@ -23,7 +24,11 @@ export class UploadImageComponent {
             if (file) {
                 this.currentFile = file;
 
-                this._uploadService.upload(this.currentFile).subscribe();
+                this._uploadService
+                    .upload(this.currentFile)
+                    .subscribe((responseMessage: string) => {
+                        this.message = responseMessage;
+                    });
             }
         }
 

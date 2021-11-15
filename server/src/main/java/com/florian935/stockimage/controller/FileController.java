@@ -16,6 +16,7 @@ import java.util.Optional;
 import static lombok.AccessLevel.PRIVATE;
 import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.TEXT_XML_VALUE;
 
 @RestController
 @RequestMapping("/files")
@@ -48,9 +49,9 @@ public class FileController {
         return fileService.getAllFiles();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(path = "/{id}", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(OK)
-    public ResponseEntity<byte[]> getFile(@PathVariable Integer id) {
+    public ResponseEntity<File> getFile(@PathVariable Integer id) {
 
         final Optional<File> fileEntityOptional = fileService.getFile(id);
 
@@ -64,7 +65,6 @@ public class FileController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION,
                         "attachment; filename=\"" + file.getName() + "\"")
-                .contentType(MediaType.valueOf(file.getContentType()))
-                .body(file.getData());
+                .body(file);
     }
 }

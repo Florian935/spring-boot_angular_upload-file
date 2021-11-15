@@ -1,1 +1,13 @@
-<p>download-image works!</p>
+<div class="col-md-6">
+    <input type="button" (click)="getImages()" value="Get Images" />
+</div>
+
+<div class="container row">
+    <div class="col-md-12">
+        <ng-container *ngIf="retrievedImages$ | async as retrievedImages">
+            <ng-container *ngFor="let retrievedImage of retrievedImages">
+                <img [src]="retrievedImage" />
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
