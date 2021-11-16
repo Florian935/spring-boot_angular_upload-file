@@ -1,6 +1,6 @@
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { UploadService } from '../services/upload.service';
+import { UploadService } from '../../../core/services/upload.service';
 
 @Component({
     selector: 'app-upload-image',
@@ -15,8 +15,9 @@ export class UploadImageComponent {
 
     constructor(private _uploadService: UploadService) {}
 
-    selectFile(event: any): void {
-        this.selectedFiles = event.target.files;
+    selectFile(event: Event): void {
+        this.selectedFiles =
+            (event.target as HTMLInputElement).files ?? undefined;
     }
 
     upload(): void {

@@ -1,0 +1,36 @@
+<div
+    class="upload-multiple-image-container"
+    fxLayout="column"
+    fxLayoutAlign="space-around center"
+>
+    <div>
+        <label>
+            <input type="file" multiple (change)="selectFiles($event)" />
+        </label>
+    </div>
+
+    <ng-container *ngIf="selectedFiles.length">
+        <ng-container *ngFor="let selectedFile of selectedFiles">
+            <ng-container *ngIf="selectedFile.message">
+                <div>
+                    {{ selectedFile.message }}, percent done:
+                    {{ selectedFile.percentDone }}%
+                </div>
+                <mat-progress-bar
+                    mode="determinate"
+                    [value]="selectedFile.percentDone"
+                ></mat-progress-bar>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+
+    <div>
+        <button
+            class="btn btn-success btn-sm"
+            [disabled]="!selectedFiles"
+            (click)="upload()"
+        >
+            Upload
+        </button>
+    </div>
+</div>

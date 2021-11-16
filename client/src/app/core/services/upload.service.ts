@@ -18,13 +18,6 @@ export class UploadService {
         const formData: FormData = new FormData();
         formData.append('file', file);
 
-        const req = new HttpRequest(
-            'POST',
-            `${this.baseUrl}/upload`,
-            formData,
-            httpOptions
-        );
-
         return this._http.post(`${this.baseUrl}/files`, formData, httpOptions);
     }
 }

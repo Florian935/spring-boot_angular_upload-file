@@ -10,6 +10,13 @@ const routes: Routes = [
             ),
     },
     {
+        path: 'upload-multiple-image',
+        loadChildren: () =>
+            import(
+                './pages/upload-multiple-image/upload-multiple-image.module'
+            ).then((m) => m.UploadMultipleImageModule),
+    },
+    {
         path: 'download-image',
         loadChildren: () =>
             import('./pages/download-image/download-image.module').then(
