@@ -23,8 +23,6 @@ export class UploadMultipleImageComponent {
                 return { file };
             });
         }
-
-        console.log(this.selectedFiles);
     }
 
     upload(): void {
@@ -65,10 +63,6 @@ export class UploadMultipleImageComponent {
                     });
             });
         }
-
-        //     this.selectedFiles = this.selectedFiles.map((fileUi: FileUi) => {
-        //         return { ...fileUi, file: undefined };
-        //     });
     }
 
     private getSelectedFiles(

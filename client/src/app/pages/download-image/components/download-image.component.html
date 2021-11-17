@@ -1,5 +1,15 @@
-<div class="col-md-6">
+<div>
     <input type="button" (click)="getImages()" value="Get Images" />
+</div>
+
+<div class="progress-container">
+    <ng-container *ngIf="loadingMessage">
+        <div>{{ loadingMessage }}, percent done: {{ percentDone }}%</div>
+        <mat-progress-bar
+            mode="determinate"
+            [value]="percentDone"
+        ></mat-progress-bar>
+    </ng-container>
 </div>
 
 <div class="container row">
